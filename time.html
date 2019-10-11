@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="js/jquery-1.11.0.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+	<style>
+		.display{width: 1874px;margin: 0 auto;position: relative;}
+		.zero,.one,.two,.three,.four,.five,.six,.seven,.eight,.nine{position: relative}
+		.d1,.d2,.d3,.d4,.d5,.d6{display: inline-block;width: 255px;margin: 20px}
+		.nine .top{width: 150px;border-top: 50px solid #333;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;top:197px;left: 40px;}
+		.nine .center{position: absolute;width: 250px;top: 432px;left: 40px;}
+		.nine .center .center_center{width: 150px;height: 50px;background: #333;margin-left: 50px; }
+		.nine .center .center_left{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-right: 35px solid #333;position: absolute;left: 15px;top:0}
+		.nine .center .center_right{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-left: 35px solid #333;position: absolute;right: 15px;top:0}
+		.nine .foot{width: 150px;border-bottom: 50px solid #333;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;left: 40px;top:668px}
+		.nine .top_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid #333;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:206px}
+		.nine .top_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 206px;}
+		.nine .foot_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid #333;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:458px}
+		.nine .foot_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 458px;}
+
+
+
+
+		.zero .top{width: 150px;border-top: 50px solid #333;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;top:197px;left: 40px;}
+		.zero .center{position: absolute;width: 250px;top: 432px;left: 40px;}
+		.zero .center .center_center{width: 150px;height: 50px;background: #333;margin-left: 50px; opacity: 0.01}
+		.zero .center .center_left{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-right: 35px solid rgba(51,51,51,0.01)!important;position: absolute;left: 15px;top:0}
+		.zero .center .center_right{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-left: 35px solid rgba(51,51,51,0.01)!important;position: absolute;right: 15px;top:0}
+		.zero .foot{width: 150px;border-bottom: 50px solid #333;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;left: 40px;top:668px}
+		.zero .top_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid #333;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:206px}
+		.zero .top_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 206px;}
+		.zero .foot_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid #333;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:458px}
+		.zero .foot_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 458px;}
+
+		.one .top{width: 150px;border-top: 50px solid rgba(51,51,51,0.01)!important;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;top:197px;left: 40px;}
+		.one .center{position: absolute;width: 250px;top: 432px;left: 40px;}
+		.one .center .center_center{width: 150px;height: 50px;background: rgba(51,51,51,0.01)!important;margin-left: 50px;}
+		.one .center .center_left{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-right: 35px solid rgba(51,51,51,0.01)!important;position: absolute;left: 15px;top:0}
+		.one .center .center_right{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-left: 35px solid rgba(51,51,51,0.01)!important;position: absolute;right: 15px;top:0}
+		.one .foot{width: 150px;border-bottom: 50px solid rgba(51,51,51,0.01)!important;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;left: 40px;top:668px}
+		.one .top_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid rgba(51,51,51,0.01)!important;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:206px}
+		.one .top_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 206px;}
+		.one .foot_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid rgba(51,51,51,0.01)!important;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:458px}
+		.one .foot_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 458px;}
+
+		.two .top{width: 150px;border-top: 50px solid #333;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;top:197px;left: 40px;}
+		.two .center{position: absolute;width: 250px;top: 432px;left: 40px;}
+		.two .center .center_center{width: 150px;height: 50px;background: #333;margin-left: 50px; }
+		.two .center .center_left{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-right: 35px solid #333;position: absolute;left: 15px;top:0}
+		.two .center .center_right{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-left: 35px solid #333;position: absolute;right: 15px;top:0}
+		.two .foot{width: 150px;border-bottom: 50px solid #333;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;left: 40px;top:668px}
+		.two .top_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid rgba(51,51,51,0.01)!important;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:206px}
+		.two .top_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 206px;}
+		.two .foot_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid #333;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:458px}
+		.two .foot_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid rgba(51,51,51,0.01)!important;position: absolute;left: 245px;top: 458px;}
+
+		.three .top{width: 150px;border-top: 50px solid #333;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;top:197px;left: 40px;}
+		.three .center{position: absolute;width: 250px;top: 432px;left: 40px;}
+		.three .center .center_center{width: 150px;height: 50px;background: #333;margin-left: 50px; }
+		.three .center .center_left{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-right: 35px solid #333;position: absolute;left: 15px;top:0}
+		.three .center .center_right{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-left: 35px solid #333;position: absolute;right: 15px;top:0}
+		.three .foot{width: 150px;border-bottom: 50px solid #333;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;left: 40px;top:668px}
+		.three .top_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid rgba(51,51,51,0.01)!important;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:206px}
+		.three .top_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 206px;}
+		.three .foot_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid rgba(51,51,51,0.01)!important;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:458px}
+		.three .foot_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 458px;}
+
+		.four .top{width: 150px;border-top: 50px solid rgba(51,51,51,0.01)!important;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;top:197px;left: 40px;}
+		.four .center{position: absolute;width: 250px;top: 432px;left: 40px;}
+		.four .center .center_center{width: 150px;height: 50px;background: #333;margin-left: 50px; }
+		.four .center .center_left{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-right: 35px solid #333;position: absolute;left: 15px;top:0}
+		.four .center .center_right{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-left: 35px solid #333;position: absolute;right: 15px;top:0}
+		.four .foot{width: 150px;border-bottom: 50px solid rgba(51,51,51,0.01)!important;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;left: 40px;top:668px}
+		.four .top_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid #333;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:206px}
+		.four .top_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 206px;}
+		.four .foot_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid rgba(51,51,51,0.01)!important;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:458px}
+		.four .foot_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 458px;}
+
+
+		.five .top{width: 150px;border-top: 50px solid #333;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;top:197px;left: 40px;}
+		.five .center{position: absolute;width: 250px;top: 432px;left: 40px;}
+		.five .center .center_center{width: 150px;height: 50px;background: #333;margin-left: 50px; }
+		.five .center .center_left{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-right: 35px solid #333;position: absolute;left: 15px;top:0}
+		.five .center .center_right{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-left: 35px solid #333;position: absolute;right: 15px;top:0}
+		.five .foot{width: 150px;border-bottom: 50px solid #333;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;left: 40px;top:668px}
+		.five .top_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid #333;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:206px}
+		.five .top_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid rgba(51,51,51,0.01)!important;position: absolute;left: 245px;top: 206px;}
+		.five .foot_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid rgba(51,51,51,0.01)!important;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:458px}
+		.five .foot_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 458px;}
+
+
+		.six .top{width: 150px;border-top: 50px solid #333;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;top:197px;left: 40px;}
+		.six .center{position: absolute;width: 250px;top: 432px;left: 40px;}
+		.six .center .center_center{width: 150px;height: 50px;background: #333;margin-left: 50px; }
+		.six .center .center_left{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-right: 35px solid #333;position: absolute;left: 15px;top:0}
+		.six .center .center_right{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-left: 35px solid #333;position: absolute;right: 15px;top:0}
+		.six .foot{width: 150px;border-bottom: 50px solid #333;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;left: 40px;top:668px}
+		.six .top_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid #333;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:206px}
+		.six .top_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid rgba(51,51,51,0.01)!important;position: absolute;left: 245px;top: 206px;}
+		.six .foot_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid #333;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:458px}
+		.six .foot_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 458px;}
+
+
+		.seven .top{width: 150px;border-top: 50px solid #333;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;top:197px;left: 40px;}
+		.seven .center{position: absolute;width: 250px;top: 432px;left: 40px;}
+		.seven .center .center_center{width: 150px;height: 50px;background: rgba(51,51,51,0.01)!important;margin-left: 50px;}
+		.seven .center .center_left{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-right: 35px solid rgba(51,51,51,0.01)!important;position: absolute;left: 15px;top:0}
+		.seven .center .center_right{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-left: 35px solid rgba(51,51,51,0.01)!important;position: absolute;right: 15px;top:0}
+		.seven .foot{width: 150px;border-bottom: 50px solid rgba(51,51,51,0.01)!important;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;left: 40px;top:668px}
+		.seven .top_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid rgba(51,51,51,0.01)!important;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:206px}
+		.seven .top_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 206px;}
+		.seven .foot_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid rgba(51,51,51,0.01)!important;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:458px}
+		.seven .foot_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 458px;}
+
+		.eight .top{width: 150px;border-top: 50px solid #333;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;top:197px;left: 40px;}
+		.eight .center{position: absolute;width: 250px;top: 432px;left: 40px;}
+		.eight .center .center_center{width: 150px;height: 50px;background: #333;margin-left: 50px; }
+		.eight .center .center_left{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-right: 35px solid #333;position: absolute;left: 15px;top:0}
+		.eight .center .center_right{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-left: 35px solid #333;position: absolute;right: 15px;top:0}
+		.eight .foot{width: 150px;border-bottom: 50px solid #333;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;left: 40px;top:668px}
+		.eight .top_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid #333;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:206px}
+		.eight .top_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 206px;}
+		.eight .foot_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid #333;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:458px}
+		.eight .foot_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 458px;}
+
+		.nine .top{width: 150px;border-top: 50px solid #333;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;top:197px;left: 40px;}
+		.nine .center{position: absolute;width: 250px;top: 432px;left: 40px;}
+		.nine .center .center_center{width: 150px;height: 50px;background: #333;margin-left: 50px; }
+		.nine .center .center_left{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-right: 35px solid #333;position: absolute;left: 15px;top:0}
+		.nine .center .center_right{border-top: 25px solid #0000;border-bottom: 25px solid #0000;border-left: 35px solid #333;position: absolute;right: 15px;top:0}
+		.nine .foot{width: 150px;border-bottom: 50px solid #333;border-left: 50px solid #0000;border-right: 50px solid #0000;position: absolute;left: 40px;top:668px}
+		.nine .top_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid #333;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:206px}
+		.nine .top_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 206px;}
+		.nine .foot_left{height: 150px;border-top: 50px solid #0000;border-left: 50px solid rgba(51,51,51,0.01)!important;border-bottom: 50px solid #0000;position: absolute;left: 35px;top:458px}
+		.nine .foot_right{height: 150px;border-top: 50px solid #0000;border-bottom: 50px solid #0000;border-right: 50px solid #333;position: absolute;left: 245px;top: 458px;}
+
+		.weekdays{position: absolute;top:70px;left: 256px}
+		.weekdays span{font-size: 30px;font-weight: bold;color: rgba(51,51,51,0.1);margin: 0 20px}
+		.MON{color: #333!important;}
+
+		.ap{position: absolute;top:70px;left: 1550px}
+		.ap span{font-size: 30px;font-weight: bold;color: rgba(51,51,51,0.1);margin: 0 20px}
+		.AM{color: #333!important;}
+	</style>
+
+</head>
+<body>
+<div id="clock" class="light">
+	<div class="display">
+		<div class="weekdays">
+			<span >MON</span>
+			<span >TUE</span>
+			<span >WED</span>
+			<span >THU</span>
+			<span >FRI</span>
+			<span >SAT</span>
+			<span >SUN</span>
+		</div>
+		<div class="ap">
+			<span>AM</span>
+			<span>PM</span>
+		</div>
+		<div class="time" style="margin: 0 auto;">
+			<span class="d1" style="margin-left: -35px"></span>
+			<span class="d2"></span>
+			<div style="position: absolute;left: 591px;top:227px">
+				<span style="display: block;width: 40px;height: 40px;background: #333;margin: 150px 0"></span>
+				<span style="display: block;width: 40px;height: 40px;background: #333;margin: 150px 0"></span>
+			</div>
+			<span class="d3" style="margin-left: 80px"></span>
+			<span class="d4"></span>
+			<div style="position: absolute;left: 1250px;top:227px">
+				<span style="display: block;width: 40px;height: 40px;background: #333;margin: 150px 0"></span>
+				<span style="display: block;width: 40px;height: 40px;background: #333;margin: 150px 0"></span>
+			</div>
+			<span class="d5" style="margin-left: 80px"></span>
+			<span class="d6"></span>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	$(function () {
+        var nowData =''
+		var hour = '';
+		var minute = '';
+		var second = '';
+		var list = ["zero","one","two","three","four","five","six","seven","eight","nine",]
+		var lis2 = ["d1","d2","d3","d4","d5","d6",]
+		$.each(lis2,function (index,item) {
+			$("."+ item+"").append('<div class="zero"><div  class="top"></div>' +
+				'<div class="center" >' +
+				'<div class="center_center"></div>' +
+				'<div class="center_left"></div>' +
+				'<div class="center_right"></div>' +
+				'</div>' +
+				'<div class="foot"></div>' +
+				'<div class="top_left"></div>' +
+				'<div class="top_right"></div>' +
+				'<div class="foot_left"></div>' +
+				'<div class="foot_right"></div></div>')
+		})
+		$($('.weekdays').children()[new Date().getDay()-1]).attr('class',"MON")
+		if(new Date().getHours() < 12){
+			$($('.ap').children()[0]).attr('class',"AM")
+		}else {
+			$($('.ap').children()[1]).attr('class',"AM")
+		}
+		time()
+		setInterval(function () {
+			time()
+		},1000)
+        function time() {
+	        nowData = new Date()
+	        hour = nowData.getHours()
+	        minute =nowData.getMinutes()
+	        second = nowData.getSeconds()
+	        if(hour < 10){
+		        $($(".d1").children("div")).attr("class",'zero')
+		        $($(".d2").children("div")).attr("class",list[hour])
+	        }else{
+		        $($(".d1").children("div")).attr("class",list[Math.floor(hour/10)])
+		        $($(".d2").children("div")).attr("class",list[hour%10])
+	        }
+	        if(minute < 10 ){
+		        $($(".d3").children("div")).attr("class",'zero')
+		        $($(".d4").children("div")).attr("class",list[minute])
+	        }else {
+		        $($(".d3").children("div")).attr("class",list[Math.floor(minute/10)])
+		        $($(".d4").children("div")).attr("class",list[minute%10])
+	        }
+	        if(second < 10 ){
+		        $($(".d5").children("div")).attr("class",'zero')
+		        $($(".d6").children("div")).attr("class",list[second])
+	        }else {
+		        $($(".d5").children("div")).attr("class",list[Math.floor(second/10)])
+		        $($(".d6").children("div")).attr("class",list[second%10])
+	        }
+        }
+	})
+</script>
+</body>
+</html>
